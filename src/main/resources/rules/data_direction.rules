@@ -42,4 +42,15 @@
 -> (?d  http://www.semanticweb.org/problem-ontology#hasError 'Входное значение вместо выходного')
 ]
 
+[
+ StudentReadWriteForOutputData:
+ (?d rdf:type http://www.semanticweb.org/problem-ontology#DataElement)
+(?p rdf:type http://www.semanticweb.org/problem-ontology#Problem)
+(?p http://www.semanticweb.org/problem-ontology#hasOutputData ?d)
+(?pres rdf:type http://www.semanticweb.org/problem-ontology#DataElementPresentation)
+(?d http://www.semanticweb.org/problem-ontology#hasPresentation ?pres)
+(?pres http://www.semanticweb.org/problem-ontology#transferMethod 'read-write')
+-> (?d  http://www.semanticweb.org/problem-ontology#hasError 'Обновляемое значение вместо выходного')
+]
+
 

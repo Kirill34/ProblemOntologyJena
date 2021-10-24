@@ -226,6 +226,13 @@ public class ProblemOntologyTest
         expectedIndividualMessages.put(this.daysCount, "Входное значение вместо выходного");
     }
 
+    @Test
+    public void Test_ReadWriteDaysCount()
+    {
+        setDataDirections(DATA_TRANSFER_METHOD_READ_ONLY, DATA_TRANSFER_METHOD_READ_ONLY, DATA_TRANSFER_METHOD_READ_WRITE);
+        expectedIndividualMessages.put(this.daysCount, "Обновляемое значение вместо выходного");
+    }
+
     @AfterEach
     public void setDown()
     {
