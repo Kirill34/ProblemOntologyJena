@@ -12,6 +12,7 @@ import org.apache.jena.riot.RDFDataMgr;
 import org.apache.jena.vocabulary.OWL2;
 import org.junit.jupiter.api.*;
 
+import java.awt.*;
 import java.io.*;
 import java.util.HashMap;
 
@@ -231,6 +232,46 @@ public class ProblemOntologyTest
     {
         setDataDirections(DATA_TRANSFER_METHOD_READ_ONLY, DATA_TRANSFER_METHOD_READ_ONLY, DATA_TRANSFER_METHOD_READ_WRITE);
         expectedIndividualMessages.put(this.daysCount, "Обновляемое значение вместо выходного");
+    }
+
+    @Test
+    public void Test_WriteSecondDate()
+    {
+        setDataDirections(DATA_TRANSFER_METHOD_READ_ONLY, DATA_TRANSFER_METHOD_WRITE_ONLY, DATA_TRANSFER_METHOD_RETURN);
+        expectedIndividualMessages.put(this.secondDate_DataElement, "Выходное значение вместо входного");
+    }
+
+    @Test
+    public void Test_WriteTwoDates()
+    {
+        setDataDirections(DATA_TRANSFER_METHOD_WRITE_ONLY, DATA_TRANSFER_METHOD_WRITE_ONLY, DATA_TRANSFER_METHOD_RETURN);
+        expectedIndividualMessages.put(this.firstDate_DataElement, "Выходное значение вместо входного");
+        expectedIndividualMessages.put(this.secondDate_DataElement, "Выходное значение вместо входного");
+    }
+
+    @Test
+    public void Test_UpdateTwoDates()
+    {
+        setDataDirections(DATA_TRANSFER_METHOD_READ_WRITE, DATA_TRANSFER_METHOD_READ_WRITE, DATA_TRANSFER_METHOD_RETURN);
+        expectedIndividualMessages.put(this.firstDate_DataElement, "Обновляемое значение вместо входного");
+        expectedIndividualMessages.put(this.secondDate_DataElement, "Обновляемое значение вместо входного");
+    }
+
+    @Test
+    public void Test_WriteFirstDate_UpdateSecondDate()
+    {
+        setDataDirections(DATA_TRANSFER_METHOD_WRITE_ONLY, DATA_TRANSFER_METHOD_READ_WRITE, DATA_TRANSFER_METHOD_RETURN);
+        expectedIndividualMessages.put(this.firstDate_DataElement, "Выходное значение вместо входного");
+        expectedIndividualMessages.put(this.secondDate_DataElement, "Обновляемое значение вместо входного");
+    }
+
+    @Test
+    public void Test_WriteFirstDate_UpdateSecondDate_ReadDaysCount()
+    {
+        setDataDirections(DATA_TRANSFER_METHOD_WRITE_ONLY, DATA_TRANSFER_METHOD_READ_WRITE, DATA_TRANSFER_METHOD_READ_ONLY);
+        expectedIndividualMessages.put(this.firstDate_DataElement, "Выходное значение вместо входного");
+        expectedIndividualMessages.put(this.secondDate_DataElement, "Обновляемое значение вместо входного");
+        expectedIndividualMessages.put(this.daysCount, "Входное значение вместо выходного");
     }
 
     @AfterEach
