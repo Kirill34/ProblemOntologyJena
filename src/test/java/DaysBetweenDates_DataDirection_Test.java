@@ -1,24 +1,19 @@
-import org.apache.jena.base.Sys;
 import org.apache.jena.ontology.Individual;
 import org.apache.jena.ontology.OntModel;
 import org.apache.jena.rdf.model.*;
 import org.apache.jena.reasoner.Reasoner;
-import org.apache.jena.reasoner.ReasonerFactory;
-import org.apache.jena.reasoner.rulesys.ClauseEntry;
 import org.apache.jena.reasoner.rulesys.GenericRuleReasoner;
 import org.apache.jena.reasoner.rulesys.Rule;
-import org.apache.jena.reasoner.rulesys.RuleReasonerFactory;
 import org.apache.jena.riot.RDFDataMgr;
 import org.apache.jena.vocabulary.OWL2;
 import org.junit.jupiter.api.*;
 
-import java.awt.*;
 import java.io.*;
 import java.util.HashMap;
 
 import static org.apache.jena.ontology.OntModelSpec.OWL_MEM_MICRO_RULE_INF;
 
-public class ProblemOntologyTest
+public class DaysBetweenDates_DataDirection_Test
 {
     private Model model = null;
     private OntModel inf = null;
@@ -72,7 +67,7 @@ public class ProblemOntologyTest
 
       //  File file = new File("TODO");
         InputStream stream = getClass().getClassLoader().getResourceAsStream(DATA_DIRECTION_RULES);
-        String rules = ProblemOntologyTest.readStream( stream);
+        String rules = DaysBetweenDates_DataDirection_Test.readStream( stream);
         //System.out.print(rules);
         reasoner = new GenericRuleReasoner(Rule.parseRules(rules));
         reasoner.setDerivationLogging(true);
@@ -283,7 +278,6 @@ public class ProblemOntologyTest
 
         while (iter.hasNext()) {
             Resource r = iter.nextResource();
-            System.out.print(r.toString());
             Property hasError_Property = infModel.getProperty(BASE_URL+"#hasError");
             Statement value_statement = r.getProperty(hasError_Property);
             Individual ind = inf.getIndividual((r.getURI()));
