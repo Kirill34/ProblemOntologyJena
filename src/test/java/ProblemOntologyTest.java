@@ -219,6 +219,13 @@ public class ProblemOntologyTest
         expectedIndividualMessages.put(this.firstDate_DataElement, "Обновляемое значение вместо входного");
     }
 
+    @Test
+    public void Test_ReadDaysCount()
+    {
+        setDataDirections(DATA_TRANSFER_METHOD_READ_ONLY, DATA_TRANSFER_METHOD_READ_ONLY, DATA_TRANSFER_METHOD_READ_ONLY);
+        expectedIndividualMessages.put(this.daysCount, "Входное значение вместо выходного");
+    }
+
     @AfterEach
     public void setDown()
     {
