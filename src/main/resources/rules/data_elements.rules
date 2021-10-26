@@ -1,3 +1,12 @@
+(?x ?p ?y), (?p rdfs:domain ?c) -> (?x rdf:type ?c) .
+
+(?x ?p ?y), (?p rdfs:range ?c) -> (?y rdf:type ?c) .
+
+(?a ?p ?b), (?p rdfs:subPropertyOf ?q) -> (?a ?q ?b) .
+
+(?x rdfs:subClassOf ?y), (?a rdf:type ?x) -> (?a rdf:type ?y) .
+
+[transitiveRule: (?P rdf:type owl:TransitiveProperty), (?A ?P ?B), (?B ?P ?C) -> (?A ?P ?C) ]
 
 [
      ScalarDataElement:
@@ -8,6 +17,17 @@
      (?domain_type http://www.semanticweb.org/problem-ontology#name ?domain_type_name)
      (?component http://www.semanticweb.org/problem-ontology#name ?component_name)
      strConcat(?data_element_name, ?domain_type_name, ?component_name,  ?full_name)
+     makeSkolem(?childDataElement, ?fullName)
      ->
-     (?data_element http://www.semanticweb.org/problem-ontology#fullName ?full_name)
+     (?childDataElement rdf:type http://www.w3.org/2002/07/owl#NamedIndividual)
+     (?childDataElement rdf:type http://www.semanticweb.org/problem-ontology#DataElement)
+     (?childDataElement http://www.semanticweb.org/problem-ontology#fullName ?full_name)
+]
+
+[
+    PrintAllDomainTypes:
+    (?domain_type rdf:type http://www.semanticweb.org/problem-ontology#DomainType)
+    (?domain_type http://www.semanticweb.org/problem-ontology#name ?name)
+    ->
+    print(?name)
 ]
