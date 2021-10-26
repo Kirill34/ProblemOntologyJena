@@ -1,0 +1,13 @@
+
+[
+     ScalarDataElement:
+     (?data_element rdf:type http://www.semanticweb.org/problem-ontology#DataElement)
+     (?data_element http://www.semanticweb.org/problem-ontology#hasDomainType ?domain_type)
+     (?domain_type http://www.semanticweb.org/problem-ontology#hasComponent ?component)
+     (?data_element http://www.semanticweb.org/problem-ontology#name ?data_element_name)
+     (?domain_type http://www.semanticweb.org/problem-ontology#name ?domain_type_name)
+     (?component http://www.semanticweb.org/problem-ontology#name ?component_name)
+     strConcat(?data_element_name, ?domain_type_name, ?component_name,  ?full_name)
+     ->
+     (?data_element http://www.semanticweb.org/problem-ontology#fullName ?full_name)
+]
