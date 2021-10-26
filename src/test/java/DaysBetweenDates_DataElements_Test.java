@@ -1,3 +1,4 @@
+import org.apache.jena.base.Sys;
 import org.apache.jena.ontology.Individual;
 import org.apache.jena.rdf.model.*;
 import org.junit.jupiter.api.AfterEach;
@@ -27,6 +28,7 @@ public class DaysBetweenDates_DataElements_Test extends  DaysBetweenDates_BaseTe
     public void setDown()
     {
         InfModel infModel = ModelFactory.createInfModel(reasoner, inf);
+
         ResIterator iter = infModel.listResourcesWithProperty(infModel.getProperty(BASE_URL+"#fullName"));
 
         while (iter.hasNext()) {
@@ -34,9 +36,12 @@ public class DaysBetweenDates_DataElements_Test extends  DaysBetweenDates_BaseTe
             Property hasError_Property = infModel.getProperty(BASE_URL+"#fullName");
             Statement value_statement = r.getProperty(hasError_Property);
             System.out.print(value_statement.getString()+"\n");
+            System.out.print(r+"\n");
             //Individual ind = inf.getIndividual((r.getURI()));
 
         }
+
+
     }
 
 

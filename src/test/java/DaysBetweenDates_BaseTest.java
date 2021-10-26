@@ -108,7 +108,7 @@ public class DaysBetweenDates_BaseTest {
 
         //
         //Тип предметной области "Дата"
-        Individual date_Entity = inf.createIndividual(BASE_URL + "Entity_Date", inf.createOntResource(BASE_URL + "#Entity"));
+        Individual date_Entity = inf.createIndividual(BASE_URL + "#Entity_Date", inf.createOntResource(BASE_URL + "#Entity"));
         date_Entity.addRDFType(OWL2.NamedIndividual);
         date_Entity.addProperty(inf.createDatatypeProperty(BASE_URL+"#name"), "дата");
 
