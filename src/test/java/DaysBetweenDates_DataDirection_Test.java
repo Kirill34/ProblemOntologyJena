@@ -19,7 +19,7 @@ public class DaysBetweenDates_DataDirection_Test extends DaysBetweenDates_BaseTe
 
     @BeforeEach
     public void init() throws FileNotFoundException {
-        createModel();
+        createModel(DATA_DIRECTION_RULES);
     }
 
     private void setDataDirections(String FirstDateDirection, String SecondDateDirection, String DaysCountDirection)

@@ -34,7 +34,7 @@ public class DaysBetweenDates_BaseTest {
     protected Individual firstDate_DataElement = null;
     protected Individual secondDate_DataElement = null;
 
-    protected void createModel()
+    protected void createModel(String rulesFile)
     {
         // create an empty model
         model = ModelFactory.createDefaultModel();
@@ -49,7 +49,7 @@ public class DaysBetweenDates_BaseTest {
         // read the RDF/XML file
         model.read(in, null);
         
-        InputStream stream = getClass().getClassLoader().getResourceAsStream(DATA_DIRECTION_RULES);
+        InputStream stream = getClass().getClassLoader().getResourceAsStream(rulesFile);
         String rules = readStream( stream);
         //System.out.print(rules);
         reasoner = new GenericRuleReasoner(Rule.parseRules(rules));
@@ -134,6 +134,14 @@ public class DaysBetweenDates_BaseTest {
         yearNumber_Scalar.addProperty(inf.createDatatypeProperty(BASE_URL+"#name"), "номер года");
 
         //Компоненты даты
+        date_Entity.addProperty(inf.createObjectProperty(BASE_URL+"#hasComponent"), dayNumber_Scalar );
+        date_Entity.addProperty(inf.createObjectProperty(BASE_URL+"#hasComponent"), monthNumber_Scalar);
+        date_Entity.addProperty(inf.createObjectProperty(BASE_URL+"#hasComponemt"), yearNumber_Scalar);
+
+        //Типы элементов данных
+        firstDate_DataElement.addProperty(inf.createObjectProperty(BASE_URL+"#hasDomainType"), date_Entity);
+        secondDate_DataElement.addProperty(inf.createObjectProperty(BASE_URL+"#hasDomainType"), date_Entity);
+        daysCount.addProperty(inf.createObjectProperty(BASE_URL+"#hasDomainType"), daysPeriod_Scalar);
 
 
 
