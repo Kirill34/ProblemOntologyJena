@@ -106,6 +106,15 @@ public class DaysBetweenDates_BaseTest {
         secondDate_DataElement.addProperty(inf.createDatatypeProperty(BASE_URL+"#name"), "вторая дата");
         secondDate_DataElement.addProperty(inf.createDatatypeProperty(BASE_URL+"#mission"), "вторая дата");
 
+        //Соединяем фразы
+        daysCount_phrase.addProperty(inf.createObjectProperty(BASE_URL+"#next"), between_phrase);
+        between_phrase.addProperty(inf.createObjectProperty(BASE_URL+"#next"), firstDate_phrase);
+        firstDate_phrase.addProperty(inf.createObjectProperty(BASE_URL+"#next"), and_phrase);
+        and_phrase.addProperty(inf.createObjectProperty(BASE_URL+"#next"), secondDate_phrase);
+
+
+
+
         //
         //Тип предметной области "Дата"
         Individual date_Entity = inf.createIndividual(BASE_URL + "#Entity_Date", inf.createOntResource(BASE_URL + "#Entity"));
@@ -152,6 +161,9 @@ public class DaysBetweenDates_BaseTest {
         problem.addProperty(inf.createObjectProperty(BASE_URL+"#hasInputData"), firstDate_DataElement);
         problem.addProperty(inf.createObjectProperty(BASE_URL+"#hasInputData"), secondDate_DataElement);
         problem.addProperty(inf.createObjectProperty(BASE_URL+"#hasOutputData"), daysCount);
+
+        //Первая фраза задачи
+        problem.addProperty(inf.createObjectProperty(BASE_URL+"#hasFormulation"), daysCount_phrase);
     }
 
 

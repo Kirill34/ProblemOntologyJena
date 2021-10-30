@@ -142,6 +142,16 @@ public class DaysBetweenDates_DataDirection_Test extends DaysBetweenDates_BaseTe
         }
         Assertions.assertEquals(expectedIndividualMessages, realIndiviadualMessages);
 
+        iter = infModel.listResourcesWithProperty(infModel.getProperty(BASE_URL+"#hasFullText"));
+        while (iter.hasNext())
+        {
+            Resource r = iter.nextResource();
+            Property hasError_Property = infModel.getProperty(BASE_URL+"#hasFullText");
+            Statement value_statement = r.getProperty(hasError_Property);
+            String fullText = value_statement.getString();
+            System.out.print(fullText+"\n");
+        }
+
 
 
     }
