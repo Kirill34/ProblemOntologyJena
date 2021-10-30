@@ -8,87 +8,37 @@
 
 [transitiveRule: (?P rdf:type owl:TransitiveProperty), (?A ?P ?B), (?B ?P ?C) -> (?A ?P ?C) ]
 
-[
-     ChildrensOfScalarDataElement:
-     (?data_element rdf:type http://www.semanticweb.org/problem-ontology#DataElement)
-     (?data_element http://www.semanticweb.org/problem-ontology#hasDomainType ?domain_type)
-     (?domain_type rdf:type http://www.semanticweb.org/problem-ontology#Entity)
-     (?domain_type http://www.semanticweb.org/problem-ontology#hasComponent ?component)
-     (?data_element http://www.semanticweb.org/problem-ontology#name ?data_element_name)
-     (?domain_type http://www.semanticweb.org/problem-ontology#name ?domain_type_name)
-     (?component http://www.semanticweb.org/problem-ontology#name ?component_name)
-     strConcat(?data_element_name, " / ", ?domain_type_name, " / " ?component_name,  ?full_name)
-     makeSkolem(?childDataElement, http://www.semanticweb.org/problem-ontology#hasChildDataElement, ?data_element, http://www.semanticweb.org/problem-ontology#hasComponent, ?component)
-     ->
-     (?childDataElement rdf:type http://www.w3.org/2002/07/owl#NamedIndividual)
-     (?childDataElement rdf:type http://www.semanticweb.org/problem-ontology#DataElement)
-     (?childDataElement http://www.semanticweb.org/problem-ontology#fullName ?full_name)
-     (?data_element http://www.semanticweb.org/problem-ontology#hasChildDataElement ?childDataElement)
-]
+
 
 [
-    ScalarDataElement:
-    (?data_element rdf:type http://www.semanticweb.org/problem-ontology#DataElement)
-    (?data_element http://www.semanticweb.org/problem-ontology#hasDomainType ?domain_type)
-    (?domain_type rdf:type http://www.semanticweb.org/problem-ontology#Scalar)
-    (?data_element http://www.semanticweb.org/problem-ontology#name ?data_element_name)
-    (?domain_type http://www.semanticweb.org/problem-ontology#name ?domain_type_name)
-    makeSkolem(?childDataElement, http://www.semanticweb.org/problem-ontology#hasChildDataElement, ?data_element)
-    strConcat(?data_element_name, " / ", ?domain_type_name, ?full_name)
-    ->
-    (?childDataElement rdf:type http://www.w3.org/2002/07/owl#NamedIndividual)
-    (?childDataElement rdf:type http://www.semanticweb.org/problem-ontology#DataElement)
-    (?childDataElement http://www.semanticweb.org/problem-ontology#fullName ?full_name)
-]
-
-[
-    ArrayForEntity:
-    (?data_element rdf:type http://www.semanticweb.org/problem-ontology#DataElement)
-    (?data_element http://www.semanticweb.org/problem-ontology#hasDomainType ?domain_type)
+    EntityPresentation:
     (?domain_type rdf:type http://www.semanticweb.org/problem-ontology#Entity)
-    makeSkolem(?array, ?domain_type)
+    (?domain_type http://www.semanticweb.org/problem-ontology#name ?dt_name)
+    makeSkolem(?entityStruct, ?domain_type, http://www.semanticweb.org/problem-ontology#StructPresentation)
     ->
-    (?array rdf:type http://www.semanticweb.org/problem-ontology#Collection)
-    (?domain_type http://www.semanticweb.org/problem-ontology#hasCollectionType ?array)
+    (?entityStruct rdf:type http://www.semanticweb.org/problem-ontology#StructPresentation)
+    (?domain_type  http://www.semanticweb.org/problem-ontology#hasAceptablePresentation ?entityStruct)
 ]
 
+[
+    EntityComponents:
+    (?domain_type rdf:type http://www.semanticweb.org/problem-ontology#Entity)
+    (?entityStruct rdf:type http://www.semanticweb.org/problem-ontology#StructPresentation)
+    (?domain_type  http://www.semanticweb.org/problem-ontology#hasAceptablePresentation ?entityStruct)
+    (?domain_type http://www.semanticweb.org/problem-ontology#hasComponent ?component)
+    makeSkolem(?data_element, ?domain_type, ?component)
+    ->
+    (?data_element rdf:type http://www.semanticweb.org/problem-ontology#DataElement)
+    (?data_element rdf:type owl:NamedIndividual)
+    (?data_element http://www.semanticweb.org/problem-ontology#hasDomainType ?component)
+    (?entityStruct http://www.semanticweb.org/problem-ontology#hasStructElement ?component)
+]
 
 [
-    ImitateElementForPartOfEntity:
-    (?data_element rdf:type http://www.semanticweb.org/problem-ontology#DataElement)
-    (?data_element http://www.semanticweb.org/problem-ontology#hasDomainType ?domain_type)
+    PrintEntityComponents:
     (?domain_type rdf:type http://www.semanticweb.org/problem-ontology#Entity)
     (?domain_type http://www.semanticweb.org/problem-ontology#hasComponent ?component)
-    (?data_element http://www.semanticweb.org/problem-ontology#name ?data_element_name)
-    (?domain_type http://www.semanticweb.org/problem-ontology#name ?domain_type_name)
-    (?component http://www.semanticweb.org/problem-ontology#name ?component_name)
-    strConcat(?data_element_name, " / ", ?domain_type_name, " / " ?component_name,  ?full_name)
-    makeSkolem(?childDataElement, http://www.semanticweb.org/problem-ontology#hasChildDataElement, ?data_element, http://www.semanticweb.org/problem-ontology#hasComponent, ?component, http://www.semanticweb.org/problem-ontology#hasImitateElement)
+    (?entityStruct rdf:type http://www.semanticweb.org/problem-ontology#StructPresentation)
     ->
-    (?childDataElement rdf:type http://www.w3.org/2002/07/owl#NamedIndividual)
-    (?childDataElement rdf:type http://www.semanticweb.org/problem-ontology#ImitateElement)
-    (?childDataElement http://www.semanticweb.org/problem-ontology#fullName ?full_name)
-    (?component http://www.semanticweb.org/problem-ontology#hasImitateElement ?childDataElement)
-
+    print(?domain_type,' has component ',?component, ' and struct presentation ',?entityStruct)
 ]
-
-[
-    ImitateElementForArray:
-    (?data_element rdf:type http://www.semanticweb.org/problem-ontology#DataElement)
-    (?domain_type http://www.semanticweb.org/problem-ontology#hasCollectionType ?array)
-    (?data_element http://www.semanticweb.org/problem-ontology#hasComponent ?component)
-    (?component http://www.semanticweb.org/problem-ontology#hasImitateElement ?imitate_element)
-    ->
-    (?array http://www.semanticweb.org/problem-ontology#hasElement ?imitate_element)
-]
-
-[
-    PrintArrayElements:
-    (?domain_type http://www.semanticweb.org/problem-ontology#hasCollectionType ?array)
-    (?array http://www.semanticweb.org/problem-ontology#hasElement ?imitate_element)
-    ->
-    print("Array: ",?array," HasElement: ",?imitate_element)
-]
-
-
-
