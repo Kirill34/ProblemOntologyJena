@@ -82,12 +82,12 @@ public class DaysBetweenDates_BaseTest {
         //Фраза "первой датой"
         Individual firstDate_phrase = inf.createIndividual(BASE_URL+"#Phrase_FirstDate", inf.getOntClass(BASE_URL+"#Phrase"));
         firstDate_phrase.addRDFType(OWL2.NamedIndividual);
-        firstDate_phrase.addProperty(inf.createDatatypeProperty(BASE_URL+"#text"), "первой датой");
+        firstDate_phrase.addProperty(inf.createDatatypeProperty(BASE_URL+"#text"), "датой рождения человека");
 
         firstDate_DataElement = inf.createIndividual(BASE_URL + "#DataElement_FirstDate", inf.createOntResource(BASE_URL+"#DataElement"));
         firstDate_DataElement.addRDFType(OWL2.NamedIndividual);
-        firstDate_DataElement.addProperty(inf.createDatatypeProperty(BASE_URL+"#name"), "первая дата");
-        firstDate_DataElement.addProperty(inf.createDatatypeProperty(BASE_URL+"#mission"), "первая дата");
+        firstDate_DataElement.addProperty(inf.createDatatypeProperty(BASE_URL+"#name"), "дата рождения");
+        firstDate_DataElement.addProperty(inf.createDatatypeProperty(BASE_URL+"#mission"), "дата рождения");
 
         firstDate_phrase.addProperty(inf.createObjectProperty(BASE_URL+"#describe"), firstDate_DataElement);
 
@@ -99,12 +99,12 @@ public class DaysBetweenDates_BaseTest {
         //Фраза "второй датой"
         Individual secondDate_phrase = inf.createIndividual(BASE_URL+"#Phrase_SecondDate", inf.getOntClass(BASE_URL+"#Phrase"));
         secondDate_phrase.addRDFType(OWL2.NamedIndividual);
-        secondDate_phrase.addProperty(inf.createDatatypeProperty(BASE_URL+"#text"), "второй датой");
+        secondDate_phrase.addProperty(inf.createDatatypeProperty(BASE_URL+"#text"), "датой первого дня в школе");
 
         secondDate_DataElement = inf.createIndividual(BASE_URL + "#DataElement_SecondDate", inf.createOntResource(BASE_URL+"#DataElement"));
         secondDate_DataElement.addRDFType(OWL2.NamedIndividual);
-        secondDate_DataElement.addProperty(inf.createDatatypeProperty(BASE_URL+"#name"), "вторая дата");
-        secondDate_DataElement.addProperty(inf.createDatatypeProperty(BASE_URL+"#mission"), "вторая дата");
+        secondDate_DataElement.addProperty(inf.createDatatypeProperty(BASE_URL+"#name"), "дата первого дня в школе");
+        secondDate_DataElement.addProperty(inf.createDatatypeProperty(BASE_URL+"#mission"), "дата первого дня в школе");
 
         //Соединяем фразы
         daysCount_phrase.addProperty(inf.createObjectProperty(BASE_URL+"#next"), between_phrase);
