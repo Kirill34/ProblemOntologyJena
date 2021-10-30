@@ -115,6 +115,12 @@
     
 
 
+    <!-- http://www.semanticweb.org/problem-ontology#hasFinishedText -->
+
+    <owl:DatatypeProperty rdf:about="http://www.semanticweb.org/problem-ontology#hasFinishedText"/>
+    
+
+
     <!-- http://www.semanticweb.org/problem-ontology#maxValue -->
 
     <owl:DatatypeProperty rdf:about="http://www.semanticweb.org/problem-ontology#maxValue"/>
