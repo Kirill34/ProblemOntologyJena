@@ -34,6 +34,14 @@
     
 
 
+    <!-- http://www.semanticweb.org/problem-ontology#hasAceptablePresentation -->
+
+    <owl:ObjectProperty rdf:about="http://www.semanticweb.org/problem-ontology#hasAceptablePresentation">
+        <rdfs:subPropertyOf rdf:resource="http://www.semanticweb.org/problem-ontology#hasDomainTypePresentation"/>
+    </owl:ObjectProperty>
+    
+
+
     <!-- http://www.semanticweb.org/problem-ontology#hasActivity -->
 
     <owl:ObjectProperty rdf:about="http://www.semanticweb.org/problem-ontology#hasActivity"/>
@@ -58,6 +66,12 @@
     
 
 
+    <!-- http://www.semanticweb.org/problem-ontology#hasDomainTypePresentation -->
+
+    <owl:ObjectProperty rdf:about="http://www.semanticweb.org/problem-ontology#hasDomainTypePresentation"/>
+    
+
+
     <!-- http://www.semanticweb.org/problem-ontology#hasElement -->
 
     <owl:ObjectProperty rdf:about="http://www.semanticweb.org/problem-ontology#hasElement"/>
@@ -74,6 +88,14 @@
 
     <owl:ObjectProperty rdf:about="http://www.semanticweb.org/problem-ontology#hasInputData">
         <rdfs:subPropertyOf rdf:resource="http://www.semanticweb.org/problem-ontology#hasData"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/problem-ontology#hasInvalidPresentation -->
+
+    <owl:ObjectProperty rdf:about="http://www.semanticweb.org/problem-ontology#hasInvalidPresentation">
+        <rdfs:subPropertyOf rdf:resource="http://www.semanticweb.org/problem-ontology#hasDomainTypePresentation"/>
     </owl:ObjectProperty>
     
 
@@ -188,6 +210,14 @@
     
 
 
+    <!-- http://www.semanticweb.org/problem-ontology#CollectionPresentation -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/problem-ontology#CollectionPresentation">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/problem-ontology#DomainTypePresentation"/>
+    </owl:Class>
+    
+
+
     <!-- http://www.semanticweb.org/problem-ontology#DataElement -->
 
     <owl:Class rdf:about="http://www.semanticweb.org/problem-ontology#DataElement"/>
@@ -203,6 +233,12 @@
     <!-- http://www.semanticweb.org/problem-ontology#DomainType -->
 
     <owl:Class rdf:about="http://www.semanticweb.org/problem-ontology#DomainType"/>
+    
+
+
+    <!-- http://www.semanticweb.org/problem-ontology#DomainTypePresentation -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/problem-ontology#DomainTypePresentation"/>
     
 
 
@@ -256,10 +292,26 @@
     
 
 
+    <!-- http://www.semanticweb.org/problem-ontology#ScalarPresentation -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/problem-ontology#ScalarPresentation">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/problem-ontology#DomainTypePresentation"/>
+    </owl:Class>
+    
+
+
     <!-- http://www.semanticweb.org/problem-ontology#SovereginElement -->
 
     <owl:Class rdf:about="http://www.semanticweb.org/problem-ontology#SovereginElement">
         <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/problem-ontology#Element"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/problem-ontology#StructPresentation -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/problem-ontology#StructPresentation">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/problem-ontology#DomainTypePresentation"/>
     </owl:Class>
 </rdf:RDF>
 
