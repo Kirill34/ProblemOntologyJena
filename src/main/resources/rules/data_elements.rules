@@ -17,6 +17,12 @@
     makeSkolem(?entityStruct, ?domain_type, http://www.semanticweb.org/problem-ontology#StructPresentation)
     makeSkolem(?scalarSet, ?domain_type, http://www.semanticweb.org/problem-ontology#ScalarPresentation)
     ->
+    (?entityStruct http://www.semanticweb.org/problem-ontology#text 'Сложная сущность')
+    (?entityStruct http://www.semanticweb.org/problem-ontology#elementCount 0)
+
+    (?scalarSet http://www.semanticweb.org/problem-ontology#text 'Как несколько отдельных параметров')
+    (?scalarSet http://www.semanticweb.org/problem-ontology#elementCount 0)
+
     (?entityStruct rdf:type http://www.semanticweb.org/problem-ontology#StructPresentation)
     (?entityStruct rdf:type owl:NamedIndividual)
     (?domain_type  http://www.semanticweb.org/problem-ontology#hasAceptablePresentation ?entityStruct)
@@ -32,35 +38,44 @@
     (?entityStruct rdf:type http://www.semanticweb.org/problem-ontology#StructPresentation)
     (?domain_type  http://www.semanticweb.org/problem-ontology#hasAceptablePresentation ?entityStruct)
     (?domain_type http://www.semanticweb.org/problem-ontology#hasComponent ?component)
+    (?entityStruct http://www.semanticweb.org/problem-ontology#elementCount ?el_count)
+    noValue(?component http://www.semanticweb.org/problem-ontology#hasBeenViewed 1)
+    addOne(?el_count, ?new_el_count)
     makeSkolem(?data_element, ?domain_type, ?component)
     ->
+    (?entityStruct http://www.semanticweb.org/problem-ontology#elementCount ?new_el_count)
     (?data_element rdf:type http://www.semanticweb.org/problem-ontology#DataElement)
     (?data_element rdf:type owl:NamedIndividual)
     (?data_element http://www.semanticweb.org/problem-ontology#hasDomainType ?component)
     (?entityStruct http://www.semanticweb.org/problem-ontology#hasStructElement ?component)
-    (?entityStruct http://www.semanticweb.org/problem-ontology#text 'Как структура')
+    (?component http://www.semanticweb.org/problem-ontology#hasBeenViewed 1)
 ]
 
-[
-    PrintEntityComponents:
-    (?domain_type rdf:type http://www.semanticweb.org/problem-ontology#Entity)
-    (?domain_type http://www.semanticweb.org/problem-ontology#hasComponent ?component)
-    (?entityStruct rdf:type http://www.semanticweb.org/problem-ontology#StructPresentation)
-    ->
-    print(?domain_type,' has component ',?component, ' and struct presentation ',?entityStruct)
-]
+
 
 [
     EntityComponentsToScalarSet:
         (?domain_type rdf:type http://www.semanticweb.org/problem-ontology#Entity)
         (?scalarSet rdf:type http://www.semanticweb.org/problem-ontology#ScalarPresentation)
-        (?domain_type  http://www.semanticweb.org/problem-ontology#hasAceptablePresentation ?scalarSet)
+        (?domain_type http://www.semanticweb.org/problem-ontology#hasAceptablePresentation ?scalarSet)
         (?domain_type http://www.semanticweb.org/problem-ontology#hasComponent ?component)
+        (?scalarSet http://www.semanticweb.org/problem-ontology#elementCount ?el_count)
+        noValue(?component http://www.semanticweb.org/problem-ontology#hasBeenViewedScalarSet 1)
+        addOne(?el_count, ?new_el_count)
         makeSkolem(?data_element, ?domain_type, ?component)
         ->
+        (?scalarSet http://www.semanticweb.org/problem-ontology#elementCount ?new_el_count)
         (?data_element rdf:type http://www.semanticweb.org/problem-ontology#DataElement)
         (?data_element rdf:type owl:NamedIndividual)
         (?data_element http://www.semanticweb.org/problem-ontology#hasDomainType ?component)
         (?scalarSet http://www.semanticweb.org/problem-ontology#hasStructElement ?data_element)
-        (?scalarSet http://www.semanticweb.org/problem-ontology#text 'Как несколько отдельных параметров')
+        (?component http://www.semanticweb.org/problem-ontology#hasBeenViewedScalarSet 1)
+]
+
+
+[
+    PresentationOf:
+    (?a http://www.semanticweb.org/problem-ontology#hasDomainTypePresentation ?b)
+    ->
+    (?b http://www.semanticweb.org/problem-ontology#presentationOf ?a)
 ]
