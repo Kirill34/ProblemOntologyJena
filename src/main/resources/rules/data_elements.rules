@@ -41,8 +41,9 @@
     (?entityStruct http://www.semanticweb.org/problem-ontology#elementCount ?el_count)
     noValue(?component http://www.semanticweb.org/problem-ontology#hasBeenViewed 1)
     addOne(?el_count, ?new_el_count)
-    makeSkolem(?data_element, ?domain_type, ?component)
+    makeSkolem(?data_element, ?domain_type, ?component, http://www.semanticweb.org/problem-ontology#StructPresentation)
     ->
+    print('EntityStruct: ',?entityStruct,' ',?component,' new count: ',?new_el_count)
     (?entityStruct http://www.semanticweb.org/problem-ontology#elementCount ?new_el_count)
     (?data_element rdf:type http://www.semanticweb.org/problem-ontology#DataElement)
     (?data_element rdf:type owl:NamedIndividual)
@@ -62,8 +63,9 @@
         (?scalarSet http://www.semanticweb.org/problem-ontology#elementCount ?el_count)
         noValue(?component http://www.semanticweb.org/problem-ontology#hasBeenViewedScalarSet 1)
         addOne(?el_count, ?new_el_count)
-        makeSkolem(?data_element, ?domain_type, ?component)
+        makeSkolem(?data_element, ?domain_type, ?component, http://www.semanticweb.org/problem-ontology#ScalarPresentation)
         ->
+        print('ScalarSet: ',?scalarSet,' ',?component)
         (?scalarSet http://www.semanticweb.org/problem-ontology#elementCount ?new_el_count)
         (?data_element rdf:type http://www.semanticweb.org/problem-ontology#DataElement)
         (?data_element rdf:type owl:NamedIndividual)

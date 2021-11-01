@@ -145,7 +145,7 @@ public class DaysBetweenDates_BaseTest {
         //Компоненты даты
         date_Entity.addProperty(inf.createObjectProperty(BASE_URL+"#hasComponent"), dayNumber_Scalar );
         date_Entity.addProperty(inf.createObjectProperty(BASE_URL+"#hasComponent"), monthNumber_Scalar);
-        date_Entity.addProperty(inf.createObjectProperty(BASE_URL+"#hasComponemt"), yearNumber_Scalar);
+        date_Entity.addProperty(inf.createObjectProperty(BASE_URL+"#hasComponent"), yearNumber_Scalar);
 
         //Типы элементов данных
         firstDate_DataElement.addProperty(inf.createObjectProperty(BASE_URL+"#hasDomainType"), date_Entity);
