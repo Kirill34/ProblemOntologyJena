@@ -120,6 +120,12 @@
     
 
 
+    <!-- http://www.semanticweb.org/problem-ontology#hasStructElement -->
+
+    <owl:ObjectProperty rdf:about="http://www.semanticweb.org/problem-ontology#hasStructElement"/>
+    
+
+
     <!-- http://www.semanticweb.org/problem-ontology#next -->
 
     <owl:ObjectProperty rdf:about="http://www.semanticweb.org/problem-ontology#next"/>
@@ -176,6 +182,12 @@
     <!-- http://www.semanticweb.org/problem-ontology#text -->
 
     <owl:DatatypeProperty rdf:about="http://www.semanticweb.org/problem-ontology#text"/>
+    
+
+
+    <!-- http://www.semanticweb.org/problem-ontology#textDescription -->
+
+    <owl:DatatypeProperty rdf:about="http://www.semanticweb.org/problem-ontology#textDescription"/>
     
 
 
