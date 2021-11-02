@@ -8,6 +8,12 @@
     (?data_element http://www.semanticweb.org/problem-ontology#hasDomainType ?domain_type)
     (?domain_type http://www.semanticweb.org/problem-ontology#hasChoosedPresentation ?presentation)
     (?presentation http://www.semanticweb.org/problem-ontology#hasStructElement ?pres_element)
+    makeSkolem(?parameter, ?data_element,?presentation,?pres_element)
     ->
     print(?data_element,' ',?presentation,' ',?pres_element)
+    (?parameter rdf:type http://www.semanticweb.org/problem-ontology#Parameter)
+    (?parameter rdf:type owl:NamedIndividual)
+    (?parameter http://www.semanticweb.org/problem-ontology#fromDataElement ?data_element)
+    (?parameter http://www.semanticweb.org/problem-ontology#fromPresentation ?presentation)
+    (?problem http://www.semanticweb.org/problem-ontology#hasParameter ?parameter)
 ]

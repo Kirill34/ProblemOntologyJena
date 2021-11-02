@@ -1,8 +1,7 @@
 import org.apache.jena.ontology.Individual;
-import org.apache.jena.rdf.model.InfModel;
-import org.apache.jena.rdf.model.ModelFactory;
-import org.apache.jena.rdf.model.ResIterator;
-import org.apache.jena.rdf.model.Resource;
+import org.apache.jena.query.*;
+import org.apache.jena.rdf.model.*;
+import org.apache.jena.sparql.lang.SPARQLParser;
 import org.apache.jena.vocabulary.OWL2;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -21,11 +20,15 @@ public class DaysBetweenDates_DataTransportation_Test extends DaysBetweenDates_B
         addPresentation();
         infModel = ModelFactory.createInfModel(reasoner, inf);
 
-        ResIterator iter = infModel.listResourcesWithProperty(inf.getObjectProperty(BASE_URL+"#hasData"));
-        while (iter.hasNext())
-        {
-            Resource r = iter.nextResource();
-        }
+        SimpleSelector selector = new SimpleSelector(inf.getOntClass(BASE_URL+"#Problem"), inf.getObjectProperty(BASE_URL+"#hasParameter"), inf.getOntClass(BASE_URL+"#Parameter"));
+        Model result = infModel.query(selector);
+        result.write(System.out);
+
+        String queryString = "SELECT ?problem ?parameter WHERE {?problem <http://www.semanticweb.org/problem-ontology#hasParameter> ?parameter }";
+        Query query = QueryFactory.create(queryString);
+        QueryExecution qExec = QueryExecutionFactory.create(query, infModel);
+        ResultSetFormatter.out(qExec.execSelect());
+
     }
 
     private void setDataDirections(String FirstDateDirection, String SecondDateDirection, String DaysCountDirection)

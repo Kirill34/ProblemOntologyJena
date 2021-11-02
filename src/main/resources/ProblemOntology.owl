@@ -92,6 +92,14 @@
     
 
 
+    <!-- http://www.semanticweb.org/problem-ontology#hasInputParameter -->
+
+    <owl:ObjectProperty rdf:about="http://www.semanticweb.org/problem-ontology#hasInputParameter">
+        <rdfs:subPropertyOf rdf:resource="http://www.semanticweb.org/problem-ontology#hasParameter"/>
+    </owl:ObjectProperty>
+    
+
+
     <!-- http://www.semanticweb.org/problem-ontology#hasInvalidPresentation -->
 
     <owl:ObjectProperty rdf:about="http://www.semanticweb.org/problem-ontology#hasInvalidPresentation">
@@ -105,6 +113,20 @@
     <owl:ObjectProperty rdf:about="http://www.semanticweb.org/problem-ontology#hasOutputData">
         <rdfs:subPropertyOf rdf:resource="http://www.semanticweb.org/problem-ontology#hasData"/>
     </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/problem-ontology#hasOutputParameter -->
+
+    <owl:ObjectProperty rdf:about="http://www.semanticweb.org/problem-ontology#hasOutputParameter">
+        <rdfs:subPropertyOf rdf:resource="http://www.semanticweb.org/problem-ontology#hasParameter"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/problem-ontology#hasParameter -->
+
+    <owl:ObjectProperty rdf:about="http://www.semanticweb.org/problem-ontology#hasParameter"/>
     
 
 
@@ -123,6 +145,14 @@
     <!-- http://www.semanticweb.org/problem-ontology#hasStructElement -->
 
     <owl:ObjectProperty rdf:about="http://www.semanticweb.org/problem-ontology#hasStructElement"/>
+    
+
+
+    <!-- http://www.semanticweb.org/problem-ontology#hasUpdatableParameter -->
+
+    <owl:ObjectProperty rdf:about="http://www.semanticweb.org/problem-ontology#hasUpdatableParameter">
+        <rdfs:subPropertyOf rdf:resource="http://www.semanticweb.org/problem-ontology#hasParameter"/>
+    </owl:ObjectProperty>
     
 
 
@@ -281,6 +311,12 @@
     <owl:Class rdf:about="http://www.semanticweb.org/problem-ontology#List">
         <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/problem-ontology#Collection"/>
     </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/problem-ontology#Parameter -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/problem-ontology#Parameter"/>
     
 
 
