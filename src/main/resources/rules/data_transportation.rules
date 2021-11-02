@@ -1,0 +1,13 @@
+[
+    CreateParameters:
+    (?problem rdf:type http://www.semanticweb.org/problem-ontology#Problem)
+    (?data_element rdf:type http://www.semanticweb.org/problem-ontology#DataElement)
+    (?problem http://www.semanticweb.org/problem-ontology#hasData ?data_element)
+    (?domain_type rdf:type http://www.semanticweb.org/problem-ontology#DomainType)
+    (?presentation rdf:type http://www.semanticweb.org/problem-ontology#DomainTypePresentation)
+    (?data_element http://www.semanticweb.org/problem-ontology#hasDomainType ?domain_type)
+    (?domain_type http://www.semanticweb.org/problem-ontology#hasChoosedPresentation ?presentation)
+    (?presentation http://www.semanticweb.org/problem-ontology#hasStructElement ?pres_element)
+    ->
+    print(?data_element,' ',?presentation,' ',?pres_element)
+]

@@ -34,6 +34,8 @@ public class DaysBetweenDates_BaseTest {
     protected Individual firstDate_DataElement = null;
     protected Individual secondDate_DataElement = null;
 
+    protected Individual date_Entity = null;
+
     protected void createModel(String rulesFile)
     {
         // create an empty model
@@ -117,7 +119,7 @@ public class DaysBetweenDates_BaseTest {
 
         //
         //Тип предметной области "Дата"
-        Individual date_Entity = inf.createIndividual(BASE_URL + "#Entity_Date", inf.createOntResource(BASE_URL + "#Entity"));
+        date_Entity = inf.createIndividual(BASE_URL + "#Entity_Date", inf.createOntResource(BASE_URL + "#Entity"));
         date_Entity.addRDFType(OWL2.NamedIndividual);
         date_Entity.addProperty(inf.createDatatypeProperty(BASE_URL+"#name"), "дата");
 
