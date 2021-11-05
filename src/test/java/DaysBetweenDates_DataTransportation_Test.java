@@ -1,12 +1,15 @@
+import org.apache.jena.base.Sys;
 import org.apache.jena.ontology.Individual;
 import org.apache.jena.query.*;
 import org.apache.jena.rdf.model.*;
 import org.apache.jena.sparql.lang.SPARQLParser;
 import org.apache.jena.vocabulary.OWL2;
+import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import java.io.FileNotFoundException;
+import java.io.Writer;
 
 public class DaysBetweenDates_DataTransportation_Test extends DaysBetweenDates_BaseTest{
 
@@ -18,16 +21,6 @@ public class DaysBetweenDates_DataTransportation_Test extends DaysBetweenDates_B
         createModel(DATA_ELEMENTS_RULES_FILE);
         addCorrectDataDirections();
         addPresentation();
-        infModel = ModelFactory.createInfModel(reasoner, inf);
-
-        SimpleSelector selector = new SimpleSelector(inf.getOntClass(BASE_URL+"#Problem"), inf.getObjectProperty(BASE_URL+"#hasParameter"), inf.getOntClass(BASE_URL+"#Parameter"));
-        Model result = infModel.query(selector);
-        result.write(System.out);
-
-        String queryString = "SELECT ?problem ?parameter WHERE {?problem <http://www.semanticweb.org/problem-ontology#hasParameter> ?parameter }";
-        Query query = QueryFactory.create(queryString);
-        QueryExecution qExec = QueryExecutionFactory.create(query, infModel);
-        ResultSetFormatter.out(qExec.execSelect());
 
     }
 
@@ -79,7 +72,47 @@ public class DaysBetweenDates_DataTransportation_Test extends DaysBetweenDates_B
     @Test
     public void firstTest()
     {
-        System.out.println("");
+        //inf.createObjectProperty(BASE_URL+"#hasReturnValue");
+        String queryString =// "SET  {?problem <http://www.semanticweb.org/problem-ontology#hasReturnValue> ?parameter }" +
+                "SELECT ?problem ?parameter ?input_data " +
+                "WHERE {" +
+                " { ?problem <http://www.semanticweb.org/problem-ontology#hasParameter> ?parameter; } " +
+                "{ ?problem <http://www.semanticweb.org/problem-ontology#hasInputData> ?input_data ; }" +
+                " ?parameter <http://www.semanticweb.org/problem-ontology#fromDataElement> ?input_data . " +
+                "} " +
+                        //"INSERT INTO <http://www.semanticweb.org/problem-ontology>  {?problem <http://www.semanticweb.org/problem-ontology#hasReturnValue> ?parameter }"+
+                "";
+
+        //String queryString = "SELECT ?problem ?parameter WHERE {?problem <http://www.semanticweb.org/problem-ontology#hasParameter> ?parameter }";
+        Query query = QueryFactory.create(queryString);
+        infModel = ModelFactory.createInfModel(reasoner, inf);
+        QueryExecution qExec = QueryExecutionFactory.create(query, infModel);
+        ResultSet resultSet = qExec.execSelect();
+        while (resultSet.hasNext())
+        {
+            QuerySolution querySolution = resultSet.next();
+            Resource problem =  querySolution.get("?problem").asResource();
+            Resource parameter = querySolution.get("?parameter").asResource();
+            Resource input_data = querySolution.get("?input_data").asResource();
+
+            problem.addProperty(infModel.createProperty(BASE_URL+"#hasReturnValue"), parameter);
+            break;
+
+        }
+        //ResultSetFormatter.out(qExec.execSelect());
+    }
+
+    @AfterEach
+    public void setDown()
+    {
+        System.out.println("Вывод результатов:");
+        infModel = ModelFactory.createInfModel(reasoner, infModel);
+
+
+        String queryString = "SELECT ?problem ?parameter WHERE {?problem <http://www.semanticweb.org/problem-ontology#hasReturnValue> ?parameter }";
+        Query query = QueryFactory.create(queryString);
+        QueryExecution qExec = QueryExecutionFactory.create(query, infModel);
+        ResultSetFormatter.out(qExec.execSelect());
     }
 
 

@@ -17,3 +17,14 @@
     (?parameter http://www.semanticweb.org/problem-ontology#fromPresentation ?presentation)
     (?problem http://www.semanticweb.org/problem-ontology#hasParameter ?parameter)
 ]
+
+[
+    InputData_ReturnValue:
+    (?problem rdf:type http://www.semanticweb.org/problem-ontology#Problem)
+    (?data_element rdf:type http://www.semanticweb.org/problem-ontology#DataElement)
+    (?problem http://www.semanticweb.org/problem-ontology#hasInputData ?data_element)
+    (?problem http://www.semanticweb.org/problem-ontology#hasReturnValue ?parameter)
+    (?parameter http://www.semanticweb.org/problem-ontology#fromDataElement ?data_element)
+    ->
+    print("Выходной параметр для входных данных")
+]
